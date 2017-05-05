@@ -6,8 +6,8 @@ build:
     - script:
       name: install
       code: |
-        cat /etc/apk/repositories && \
         echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
+        echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
         apk --update add emscripten emscripten-libs-asmjs emscripten-libs-wasm emscripten-fastcomp binaryen git
     - script:
       name: opencvjs and opencv
