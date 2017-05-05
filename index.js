@@ -6,12 +6,12 @@ function test(ctx) {
   height = ctx.canvas.height;
   pixelData = ctx.getImageData(0,0,width, height).data;
   const len = pixelData.length;
-  const mem = _malloc(len);
-  HEAPU8.set(pixelData, mem);
-  vec_ptr = m._detect(mem, width, height);
-  const filtered = HEAPU8.subarray(mem, mem + len);
-  _free(mem);
-  ellipses = new Module.VectorEllipse(vec_ptr);
+  const mem = webYaed._malloc(len);
+  webYaed.HEAPU8.set(pixelData, mem);
+  vec_ptr = webYaed._detect(mem, width, height);
+  const filtered = webYaed.HEAPU8.subarray(mem, mem + len);
+  webYaed._free(mem);
+  ellipses = new webYaed.VectorEllipse(vec_ptr);
   return ellipses;
 }
 
@@ -60,7 +60,6 @@ function test_harness(preliminary) {
 
 
 loadWASM().then(wasmModule => {
-  m = wasmModule;
   singleEllipse = document.getElementById('single-ellipse');
   ctx = singleEllipse.getContext('2d');
   width = singleEllipse.getAttribute('width');
@@ -85,6 +84,6 @@ loadWASM().then(wasmModule => {
   ctx.lineWidth = 1;
   ctx.ellipse(200.5, 75.5, 10.5, 5.5, 45 * Math.PI/180, 0, 2 * Math.PI);
   ctx.stroke();
-  
+
   test(ctx);
 });

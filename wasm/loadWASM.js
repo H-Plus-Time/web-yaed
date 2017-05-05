@@ -8,7 +8,7 @@ function loadWASM() {
       return reject(Module);
     } else {
       // TODO: use xmlhttprequest where fetch not supported
-      fetch('./wasm/web-yaed.wasm')
+      fetch('./web-yaed.wasm')
         .then(response => {
           return response.arrayBuffer();
         })
@@ -30,11 +30,9 @@ function loadWASM() {
           // else{doRun()} ...
           // script.dispatchEvent(doneEvent);
           // ... }Module["run"]
-
-          script.src = './wasm/web-yaed.js';
+          script.src = './web-yaed.js';
           document.body.appendChild(script);
         });
     }
   });
 }
-
