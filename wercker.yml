@@ -1,5 +1,5 @@
 box:
-    id: aparedes/alpine-node-yarn
+    id: mhart/alpine-node
     cmd: /bin/sh
 build:
   steps:
@@ -8,7 +8,7 @@ build:
       code: |
         echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
         echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-        apk --update add python2 emscripten emscripten-libs-asmjs emscripten-libs-wasm emscripten-fastcomp binaryen git
+        apk --update add yarn emscripten emscripten-libs-asmjs emscripten-libs-wasm emscripten-fastcomp binaryen git
     - script:
       name: opencvjs and opencv
       code: |
