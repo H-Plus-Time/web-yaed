@@ -2,6 +2,9 @@ box: mhart/alpine-node
 build:
   steps:
     - script:
+        name: test
+        code: echo hello world && ls .
+    - script:
       name: install
       code: |
         echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
