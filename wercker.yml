@@ -13,7 +13,7 @@ build:
     - script:
       name: opencvjs and opencv
       code: |
-        git clone https://github.com/opencv/opencv.git --depth=1 && cd opencv && \
+        git clone https://github.com/opencv/opencv --depth=1 && cd opencv && \
         mkdir -p build && cd build && ../../wrapper.sh && make -j$(($(nproc)-1))
     - script:
       name: actual build
