@@ -4,12 +4,12 @@ build:
     - script:
       name: install
       code: |
-        echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
+        echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
         apk --no-cache add emscripten binaryen emscripten-libs-asmjs emscripten-libs-wasm git
     - script:
       name: opencvjs and opencv
       code: |
-        git clone https://github.com/opencvjs.git && cd opencvjs
+        git clone https://github.com/opencvjs.git && cd opencvjs && \
         git clone https://github.com/opencv/opencv.git
     - script:
       name: actual build
