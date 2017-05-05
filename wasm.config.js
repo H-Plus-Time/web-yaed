@@ -8,16 +8,15 @@ module.exports = {
   ],
   flags: [
     '-std=c++11',
-    '-s WASM=1',
-    '-s ASSERTIONS=2',
     '-O3',
     '--bind',
-    '-s ALLOW_MEMORY_GROWTH=1',
     '-s DEMANGLE_SUPPORT=1',
-    './opencvjs/opencv/build/lib/libopencv_core.a',
-    './opencvjs/opencv/build/lib/libopencv_imgcodecs.a',
+    '-s WASM=1',
+    '-s ASSERTIONS=2',
+    '-s ALLOW_MEMORY_GROWTH=1',
     './opencvjs/opencv/build/lib/libopencv_imgproc.a',
-    './opencvjs/opencv/build/lib/libopencv_features2d.a',
+    './opencvjs/opencv/build/lib/libopencv_core.a',
+    './opencvjs/opencv/build/3rdparty/lib/libzlib.a',
   ],
 };
 
