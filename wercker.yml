@@ -15,7 +15,8 @@ build:
       name: opencvjs and opencv
       code: |
         git clone https://github.com/ucisysarch/opencvjs.git && cd opencvjs && \
-        git clone https://github.com/opencv/opencv.git && python2 make.py
+        git clone https://github.com/opencv/opencv.git && python2 make.py && \
+        cd ../ && ln -s $(pwd)/opencvjs ./
     - script:
       name: actual build
       code: |
