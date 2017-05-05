@@ -1,5 +1,5 @@
 box:
-    id: mhart/alpine-node
+    id: aparedes/alpine-node-yarn
     cmd: /bin/sh
 build:
   steps:
