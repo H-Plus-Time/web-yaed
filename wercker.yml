@@ -14,7 +14,7 @@ build:
       name: opencvjs and opencv
       code: |
         git clone https://github.com/opencv/opencv --depth=1 && cd opencv && \
-        mkdir -p build && cd build && ../../wrapper.sh && emmake make -j$(($(nproc)-1))
+        mkdir -p build && cd build && ../../wrapper.sh && emmake make
     - script:
       name: actual build
       code: |
