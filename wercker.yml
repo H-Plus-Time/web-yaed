@@ -6,14 +6,15 @@ build:
     - script:
       name: install
       code: |
+        ln -s /usr/share/emscripten ../emsdk-portable
         echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
         echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-        apk --update add yarn emscripten emscripten-libs-asmjs emscripten-libs-wasm emscripten-fastcomp binaryen git
+        apk --update add yarn emscripten emscripten-libs-asmjs emscripten-libs-wasm binaryen git
     - script:
       name: opencvjs and opencv
       code: |
         git clone https://github.com/ucisysarch/opencvjs.git && cd opencvjs && \
-        git clone https://github.com/opencv/opencv.git
+        git clone https://github.com/opencv/opencv.git && python2 make.py
     - script:
       name: actual build
       code: |
