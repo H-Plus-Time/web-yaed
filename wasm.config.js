@@ -14,9 +14,8 @@ module.exports = {
     '-s WASM=1',
     '-s ASSERTIONS=2',
     '-s ALLOW_MEMORY_GROWTH=1',
-    './opencvjs/opencv/build/lib/libopencv_imgproc.a',
-    './opencvjs/opencv/build/lib/libopencv_core.a',
-    './opencvjs/opencv/build/3rdparty/lib/libzlib.a',
+    './opencv/build/lib/libopencv_imgproc.a',
+    './opencv/build/lib/libopencv_core.a',
+    './opencv/build/3rdparty/lib/libzlib.a',
   ],
 };
-
