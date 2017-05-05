@@ -1,9 +1,8 @@
-box: mhart/alpine-node
+box:
+    id: mhart/alpine-node
+    cmd: /bin/sh
 build:
   steps:
-    - script:
-        name: test
-        code: echo hello world && ls .
     - script:
       name: install
       code: |
