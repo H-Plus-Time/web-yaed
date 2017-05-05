@@ -11,7 +11,7 @@ build:
         echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
         apk --update add yarn emscripten emscripten-libs-asmjs emscripten-libs-wasm binaryen git && \
         cd ../emsdk-portable && ./emcc --help
-        echo 'EMSCRIPTEN_ROOT="/usr/share/emscripten"\nCOMPILER_ENGINE = NODE_JS' >> /root/.emscripten
+        cp .emscripten /root/.emscripten
     - script:
       name: opencvjs and opencv
       code: |
