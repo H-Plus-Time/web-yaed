@@ -17,4 +17,4 @@ build:
     - script:
       name: actual build
       code: |
-        cd ../.. && yarn run compile && ls .
+        pwd && yarn run compile && ls .
