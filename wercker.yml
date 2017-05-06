@@ -19,3 +19,17 @@ build:
       name: actual build
       code: |
         touch wasm/web-yaed.js && yarn && yarn run compile && ls wasm
+deploy:
+  steps:
+    - script:
+      name: get version
+      code: export PACKAGE_VERSION=$(node -p "require('./package.json').version")
+    - script:
+      name: generate tarball
+      code: tar -czf build.tar.gz --exclude=opencv
+    - github-create-release:
+      token: $GITHUB_TOKEN
+      tag: $PACKAGE_VERSION
+    - github-upload-asset:
+      token: $GITHUB_TOKEN
+      file: build.tgz
