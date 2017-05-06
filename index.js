@@ -1,6 +1,4 @@
 // index.js
-let m = {}
-
 function test(ctx) {
   width = ctx.canvas.width;
   height = ctx.canvas.height;
@@ -59,7 +57,9 @@ function test_harness(preliminary) {
 }
 
 
-loadWASM().then(wasmModule => {
+script = document;
+doneEvent = new Event('done');
+script.addEventListener('done', () => {
   singleEllipse = document.getElementById('single-ellipse');
   ctx = singleEllipse.getContext('2d');
   width = singleEllipse.getAttribute('width');
@@ -85,5 +85,10 @@ loadWASM().then(wasmModule => {
   ctx.ellipse(200.5, 75.5, 10.5, 5.5, 45 * Math.PI/180, 0, 2 * Math.PI);
   ctx.stroke();
 
-  test(ctx);
+  let ellipses = test(ctx);
+  console.log("Logging detected ellipses:")
+  for(var i = 0; i < ellipses.size(); i++) {
+      console.log(ellipses.get(i));
+  }
 });
+webYaed = new webYaed();

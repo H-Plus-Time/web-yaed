@@ -2,7 +2,7 @@
 module.exports = {
   emscripten_path: './../emsdk-portable',
   inputfile: './cpp/*.cpp',
-  outputfile: './web-yaed.js',
+  outputfile: './wasm/web-yaed.js',
   exported_functions: [
     '_detect',
   ],
