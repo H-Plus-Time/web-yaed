@@ -18,9 +18,12 @@ build:
     - script:
       name: actual build
       code: |
-        ln -s $HOME/opencv ./ && yarn && yarn run compile
+        ln -s $HOME/opencv ./ && yarn && emcc -o ./web-yaed.js ./cpp/*.cpp -s EXPORTED_FUNCTIONS="['_detect']"   -std=c++11 -O3 --bind -s DEMANGLE_SUPPORT=1 -s WASM=1 -s MODULARIZE=1 -s EXPORT_NAME="'webYaed'" -s ASSERTIONS=2 -s ALLOW_MEMORY_GROWTH=1 ./opencv/build/lib/libopencv_imgproc.a ./opencv/build/lib/libopencv_core.a ./opencv/build/3rdparty/lib/libzlib.a
 deploy:
   steps:
+    - script:
+      name: install curl
+      code: apk --update add curl
     - script:
       name: get version
       code: export PACKAGE_VERSION=$(node -p "require('./package.json').version")
