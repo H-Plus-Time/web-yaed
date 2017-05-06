@@ -13,12 +13,12 @@ build:
     - script:
       name: opencvjs and opencv
       code: |
-        git clone https://github.com/H-Plus-Time/opencv --depth=1 && cd opencv && \
+        git clone https://github.com/H-Plus-Time/opencv $HOME/opencv --depth=1 && cd $HOME/opencv && \
         mkdir -p build && cd build && ../wrapper.sh && emmake make
     - script:
       name: actual build
       code: |
-        touch web-yaed.js && yarn && yarn run compile && ls .
+        ln -s $HOME/opencv ./ && yarn && yarn run compile
 deploy:
   steps:
     - script:
