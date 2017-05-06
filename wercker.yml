@@ -18,7 +18,7 @@ build:
     - script:
       name: actual build
       code: |
-        touch web-yaed.js && yarn && yarn run compile && ls wasm
+        touch web-yaed.js && yarn && yarn run compile && ls .
 deploy:
   steps:
     - script:
