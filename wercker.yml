@@ -16,7 +16,7 @@ deploy:
       code: apk --update add curl
     - script:
       name: get version
-      code: export PACKAGE_VERSION=$(node -p "require('./package.json').version")
+      code: export PACKAGE_VERSION=v$(node -p "require('./package.json').version")
     - script:
       name: generate tarball
       code: tar -czf build-$PACKAGE_VERSION.tar.gz --exclude=opencv *
