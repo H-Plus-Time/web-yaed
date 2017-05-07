@@ -2,3 +2,4 @@ opencvjs
 *.wasm
 wasm/web-yaed.js
 node_modules
+.wercker
