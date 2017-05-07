@@ -19,10 +19,11 @@ deploy:
       code: export PACKAGE_VERSION=v$(node -p "require('./package.json').version")
     - script:
       name: generate tarball
-      code: tar -czf build-$PACKAGE_VERSION.tar.gz --exclude=opencv * && ls .
+      code: tar -czf build.tar.gz --exclude=opencv * && ls .
     - github-create-release:
       token: $GITHUB_TOKEN
-      tag: $PACKAGE_VERSION
+      tag: $GITHUB_RELEASE_VERSION
     - github-upload-asset:
       token: $GITHUB_TOKEN
-      file: build-$PACKAGE_VERSION.tar.gz
+      file: build.tar.gz
+      filename: build-$GITHUB_RELEASE_VERSION.tar.gz
