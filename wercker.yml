@@ -1,25 +1,14 @@
 box:
-    id: mhart/alpine-node
+    id: hplustime/alpine-emscripten:wasm-opencv-latest
     cmd: /bin/sh
 build:
   steps:
     - script:
-      name: install
-      code: |
-        ln -s /usr/share/emscripten ../emsdk-portable
-        echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
-        echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-        apk --update add yarn emscripten emscripten-libs-asmjs make cmake emscripten-libs-wasm binaryen git curl
-    - script:
-      name: opencvjs and opencv
-      code: |
-        git clone https://github.com/H-Plus-Time/opencv $WERCKER_CACHE_DIR/opencv --depth=1 && cd $WERCKER_CACHE_DIR/opencv && \
-        mkdir -p build && cd build && ../wrapper.sh && emmake make && \
-        ln -s $WERCKER_CACHE_DIR/opencv $WERCKER_SOURCE_DIR/opencv
-    - script:
       name: actual build
       code: |
-        cd $WERCKER_SOURCE_DIR && yarn && emcc -o ./web-yaed.js ./cpp/*.cpp -s EXPORTED_FUNCTIONS="['_detect']"   -std=c++11 -O3 --bind -s DEMANGLE_SUPPORT=1 -s WASM=1 -s MODULARIZE=1 -s EXPORT_NAME="'webYaed'" -s ASSERTIONS=2 -s ALLOW_MEMORY_GROWTH=1 ./opencv/build/lib/libopencv_imgproc.a ./opencv/build/lib/libopencv_core.a ./opencv/build/3rdparty/lib/libzlib.a
+        ln -s /usr/share/emscripten ../emsdk-portable
+        ln -s /opencv ./opencv
+        yarn run compile
 deploy:
   steps:
     - script:
@@ -30,10 +19,10 @@ deploy:
       code: export PACKAGE_VERSION=$(node -p "require('./package.json').version")
     - script:
       name: generate tarball
-      code: tar -czf build.tar.gz --exclude=opencv *
+      code: tar -czf build-$PACKAGE_VERSION.tar.gz --exclude=opencv *
     - github-create-release:
       token: $GITHUB_TOKEN
       tag: $PACKAGE_VERSION
     - github-upload-asset:
       token: $GITHUB_TOKEN
-      file: build.tgz
+      file: build-$PACKAGE_VERSION.tar.gz

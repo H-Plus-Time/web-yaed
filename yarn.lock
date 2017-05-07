@@ -2016,11 +2016,11 @@ qs@6.2.1:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.1.tgz#ce03c5ff0935bc1d9d69a9f14cbd18e568d67625"
 
-qs@6.4.0, qs@~6.4.0:
+qs@6.4.0, "qs@>= 0.4.0", qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-"qs@>= 0.4.0", qs@~6.3.0:
+qs@~6.3.0:
   version "6.3.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.2.tgz#e75bd5f6e268122a2a0e0bda630b2550c166502c"
 
@@ -2665,6 +2665,15 @@ vinyl@^0.5.0:
 vlq@^0.2.1:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.2.tgz#e316d5257b40b86bb43cb8d5fea5d7f54d6b0ca1"
+
+wasm-init@^0.0.37:
+  version "0.0.37"
+  resolved "https://registry.yarnpkg.com/wasm-init/-/wasm-init-0.0.37.tgz#14d10bf3a09404508b04bc3cb1aa660c5935045e"
+  dependencies:
+    colors "^1.1.2"
+    express "^4.15.2"
+    fs "0.0.1-security"
+    path "^0.12.7"
 
 "wasm-init@git+https://github.com/H-Plus-Time/wasm-init.git":
   version "0.0.37"
