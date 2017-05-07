@@ -13,7 +13,7 @@ deploy:
   steps:
     - script:
       name: install curl
-      code: apk --update add curl
+      code: apk --update add curl file
     - script:
       name: get version
       code: export PACKAGE_VERSION=v$(node -p "require('./package.json').version")
