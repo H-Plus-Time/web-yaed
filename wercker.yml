@@ -8,7 +8,7 @@ build:
       code: |
         ln -s /usr/share/emscripten ../emsdk-portable
         ln -s /opencv ./opencv
-        yarn run compile
+        yarn && yarn run compile
 deploy:
   steps:
     - script:
