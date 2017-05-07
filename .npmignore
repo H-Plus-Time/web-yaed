@@ -1,3 +1,5 @@
 wercker.yml
 *.temp.asm.js
 yarn.lock
+!*.wasm
+!web-yaed.js
