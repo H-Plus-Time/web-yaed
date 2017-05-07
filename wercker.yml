@@ -22,7 +22,7 @@ deploy:
       code: tar -czf build.tar.gz --exclude=opencv * && ls .
     - github-create-release:
       token: $GITHUB_TOKEN
-      tag: $GITHUB_RELEASE_VERSION
+      tag: $PACKAGE_VERSION
     - github-upload-asset:
       token: $GITHUB_TOKEN
       file: build.tar.gz
