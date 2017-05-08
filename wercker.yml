@@ -13,13 +13,14 @@ deploy:
   steps:
     - script:
       name: install curl
-      code: apk --update add curl file
+      code: apk --update add curl file && rm opencv
+    - turistforeningen/npm-publish
     - script:
       name: get version
       code: export PACKAGE_VERSION=v$(node -p "require('./package.json').version")
     - script:
       name: generate tarball
-      code: tar -czf build.tar.gz --exclude=opencv * && ls .
+      code: tar -czf build.tar.gz * && ls .
     - github-create-release:
       token: $GITHUB_TOKEN
       tag: $PACKAGE_VERSION

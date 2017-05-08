@@ -1,5 +1,5 @@
 opencvjs
 *.wasm
-wasm/web-yaed.js
+web-yaed.js
 node_modules
 .wercker

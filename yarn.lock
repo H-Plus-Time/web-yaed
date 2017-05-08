@@ -461,7 +461,7 @@ dateformat@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.0.0.tgz#2743e3abb5c3fc2462e527dca445e04e9f4dee17"
 
-debug@2.2.0, debug@^2.2.0, debug@~2.2.0:
+debug@2.2.0, debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
@@ -473,7 +473,7 @@ debug@2.3.3:
   dependencies:
     ms "0.7.2"
 
-debug@2.6.1:
+debug@2.6.1, debug@^2.2.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
   dependencies:
@@ -2665,15 +2665,6 @@ vinyl@^0.5.0:
 vlq@^0.2.1:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.2.tgz#e316d5257b40b86bb43cb8d5fea5d7f54d6b0ca1"
-
-wasm-init@^0.0.37:
-  version "0.0.37"
-  resolved "https://registry.yarnpkg.com/wasm-init/-/wasm-init-0.0.37.tgz#14d10bf3a09404508b04bc3cb1aa660c5935045e"
-  dependencies:
-    colors "^1.1.2"
-    express "^4.15.2"
-    fs "0.0.1-security"
-    path "^0.12.7"
 
 "wasm-init@git+https://github.com/H-Plus-Time/wasm-init.git":
   version "0.0.37"
