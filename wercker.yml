@@ -9,7 +9,7 @@ build:
         ln -s /usr/share/emscripten ../emsdk-portable
         ln -s /opencv ./opencv
         yarn && yarn run compile
-        echo "module.exports = webYaed;" >> web-yaed.js;
+        echo "export default webYaed;" >> web-yaed.js;
 deploy:
   steps:
     - script:
