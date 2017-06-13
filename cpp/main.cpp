@@ -16,13 +16,45 @@ extern "C" {
     // It is *extremely* important that the pointer is for a value on the 
     // heap rather than the local scope stack - the latter gets reclaimed 
     // immediately. Hence, use the new operator.
-    vector<Ellipse> * detect(unsigned char * data, int width, int height) {
+    vector<Ellipse> * detect(unsigned char * data, int width, int height, string color = "") {
         vector<Ellipse> * ellsYaed = new vector<Ellipse>();
         Mat image = Mat(width, height, CV_8UC4, data);
 		Size sz = {width, height};
 		// Convert to grayscale
 		Mat1b gray;
-		cvtColor(image, gray, CV_RGBA2GRAY);
+
+		if (color != "") {
+			Mat imageRgb;
+			cvtColor(image, imageRgb, CV_RGBA2RGB);
+			Mat hsvImg;
+			Scalar startRange;
+			Scalar endRange;
+			if(color == "red") {
+				// Special case, red wraps around 180
+				auto imageInv = ~imageRgb;
+				cvtColor(imageInv, hsvImg, CV_RGB2HSV);
+				startRange = Scalar(90 - 10, 70, 50);
+				endRange = Scalar(90 + 10, 255, 255);
+			} else {
+				cvtColor(imageRgb, hsvImg, CV_RGB2HSV);
+				if(color == "blue") {
+					startRange = Scalar(230 - 10, 70, 50);
+					endRange = Scalar(230 + 10, 255, 255);
+				} else {
+					startRange = Scalar(110 - 30, 70, 50);
+					endRange = Scalar(110 + 30, 255, 255);
+				}
+			}
+			inRange(hsvImg, startRange, endRange, gray);
+			Mat hsvChannels[3];
+			cv::split( hsvImg, hsvChannels );
+			gray = hsvChannels[2];
+		} else {
+			cvtColor(image, gray, CV_RGBA2GRAY);
+		}
+		
+		
+		
 		
 		// Parameters Settings (Sect. 4.2)
 		int		iThLength = 16;

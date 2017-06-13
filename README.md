@@ -7,19 +7,21 @@ Requirements:
 * binaryen
 * OpenCV
 
-The first two are simple to install (if you happen to be running an x86_64 machine with a ton of RAM) - follow the procedure at [WebAssembly.org](https://webassembly.org/getting-started/developers-guide/), allowing a couple of hours). If you're operating under constrained resources, take a look at [TIL - emscripten](https://github.com/H-Plus-Time/TIL/blob/master/emscripten.md). For ARM systems, definitely read that document - until emsdk correctly identifies architecture rather than just bitness, you're on your own in terms of node.
-
-The third, OpenCV, needs to be separately compiled to llvm archives. Run:
+TLDR: If you have Docker (or can get it quickly), run:
 ```bash
-git clone github.com/ucisysarch/opencvjs.git
-cd opencvjs
-git clone github.com/opencv/opencv.git
-python make.py
+docker run -v .:/root/web-yaed -i -t hplustime/alpine-emscripten:wasm-opencv-latest
+# In the resulting new shell
+ln -s /usr/share/emscripten ../emsdk-portable
+ln -s /opencv ./opencv
+yarn run compile
 ```
 
-Either create a symlink in this directory pointing to the above, or perform the above in this directory.
+The first two are simple to install (if you happen to be running an x86_64 machine with a ton of RAM) - follow the procedure at [WebAssembly.org](https://webassembly.org/getting-started/developers-guide/), allowing a couple of hours). If you're operating under constrained resources, take a look at [TIL - emscripten](https://github.com/H-Plus-Time/TIL/blob/master/emscripten.md). For ARM systems, definitely read that document - until emsdk correctly identifies architecture rather than just bitness, you're on your own in terms of node.
 
-Note that we don't actually care about the js bindings provided by opencvjs, just the .a files in opencvjs/opencv/build/lib - the build will most likely fail, but not before the archive files are generated.
+The third, OpenCV, needs to be separately compiled to llvm archives and moved 
+somewhere in the path emscripten uses for linking. The simplest way to do this
+is to replicate the logic at [docker-alpine-emscripten/opencv](https://github.com/H-Plus-Time/docker-alpine-emscripten/tree/master/opencv).
+Essentially, run the wrapper.sh script (emcmake with a lot of obtuse, poorly understood parameters, followed by emmake) in the root directory of a copy of the opencv source, then copy the include headers for both opencv and opencv2 to their expected locations in the emscripten tree (i.e. <emsdk-root>/system/include/(opencv|opencv2)).
 
 Now, to build, run:
 ```bash
@@ -31,4 +33,4 @@ and that's it - on typical systems it takes ~35s to compile, and the wasm/js bin
 For continuous development, run `yarn start` (aliases gulp).
 
 ## Usage
-Currently the instantiation procedure is a little involved for wasm modules, so the creators of wasm-init helpfully provide the standard loadWASM.js boilerplate - include it first, then call loadWASM in the same manner as in index.js.
+See index.html for usage.
