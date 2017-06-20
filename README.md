@@ -9,10 +9,13 @@ Requirements:
 
 TLDR: If you have Docker (or can get it quickly), run:
 ```bash
-docker run -v .:/root/web-yaed -i -t hplustime/alpine-emscripten:wasm-opencv-latest
+docker run -v $(pwd):/root/web-yaed -i -t hplustime/alpine-emscripten:wasm-opencv-latest /bin/bash
 # In the resulting new shell
+cd /root/web-yaed
 ln -s /usr/share/emscripten ../emsdk-portable
 ln -s /opencv ./opencv
+# Skip if dependencies are already installed
+yarn
 yarn run compile
 ```
 
